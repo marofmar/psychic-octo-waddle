@@ -40,3 +40,31 @@ for i in batch["input_ids"]:
     print(tokenizer.decode(i))
     # 캬캬 아주 잘 된다 !
 
+
+
+## Processing pairs of sentences
+
+pair_input = tokenizer("고양이는 몇 살 인가요?", "후추는 2살 입니다.")
+print(pair_input)
+
+print(tokenizer.decode(pair_input["input_ids"]))
+
+
+batch_sentences = ["안녕, 나는 고양이야.",
+                   "그리고, 나는 또 다른 고양이",
+                   "마지막으로 나는 인간."]
+
+batch_of_second_sentences = ["나는 첫 번째 고양이 후추.",
+                             "그리고 여기는 두 번째 고양이 콜라.",
+                             "마지막으로 인간 한 명은 이름 안 알려줄거다."]
+
+encoded_inputs = tokenizer(batch_sentences, batch_of_second_sentences)
+#pprint(encoded_inputs)
+
+for ids in encoded_input["input_ids"]:
+    print(tokenizer.decode(ids))
+
+batch = tokenizer(batch_sentences, batch_of_second_sentences, padding=True, truncation=True, return_tensors="pt")
+for ids in batch["input_ids"]:
+    print(tokenizer.decode(ids))
+
