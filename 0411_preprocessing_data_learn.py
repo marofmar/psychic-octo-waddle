@@ -68,3 +68,7 @@ batch = tokenizer(batch_sentences, batch_of_second_sentences, padding=True, trun
 for ids in batch["input_ids"]:
     print(tokenizer.decode(ids))
 
+
+## Pre-tokenized inputs
+encoded_input = tokenizer(["안녕", "나",",","고양이","."], is_split_into_words=True)
+print(encoded_input)
