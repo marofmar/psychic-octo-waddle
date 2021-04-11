@@ -22,4 +22,21 @@ tokenizer2 = AutoTokenizer.from_pretrained("bert-base-cased")
 encode_3 = tokenizer2("과연, 이게 될까?")
 print(encode_3)
 decode_3 = tokenizer.decode(encode_3["input_ids"])
-print(decode_3)
+print(decode_3)  # 안 됨 !
+
+
+batch_sentences = ["옛날 옛날에 귀여운 고양이 한 마리가 살았어요.",
+                   "그 고양이는 세상에서 제일 귀엽고 영특한 고양이.",
+                   "바로 김후추."]
+from pprint import pprint
+encoded_inputs = tokenizer(batch_sentences)
+pprint(encoded_inputs)
+
+batch = tokenizer(batch_sentences, padding=True, truncation=True, return_tensors='pt')
+pprint(batch)
+
+
+for i in batch["input_ids"]:
+    print(tokenizer.decode(i))
+    # 캬캬 아주 잘 된다 !
+
